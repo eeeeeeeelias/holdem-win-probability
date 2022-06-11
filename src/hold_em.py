@@ -342,7 +342,51 @@ def get_outcomes_number(num_community_card_to_complete: int, deck: tp.Set[Card])
 
 def count_win_probabilities(players_private_cards: list[tuple[str, str]],
                             known_community_cards: list[str],
-                            already_dropped_cards: list[str] = None):
+                            already_dropped_cards: list[str] = None) -> list[float]:
+    """
+    Count win probability for every player in Texas Hold'em. Private cards of every player have to be known.
+
+    S = spades
+    C = clubs
+    D = diamonds
+    H = hearts
+
+    J = jack
+    Q = queen
+    K = king
+    A = ace
+
+    Examples of cards: 2S, 10H, KD.
+
+    Use examples:
+    [1.0, 0.0] (royal flush after flop, 1st player wins)
+    probabilities = count_win_probabilities(
+        players_private_cards=[('AH', 'KH'), ('AD', '8D')],
+        known_community_cards=['QH', 'JH', '10H'],
+        already_dropped_cards=['2S', '4D', 'AC', '5C']
+    )
+
+    [1.0, 0.0] (4 of a kind after turn, 1st player wins)
+    probabilities = count_win_probabilities(
+        players_private_cards=[('2H', '2S'), ('AD', '8D')],
+        known_community_cards=['QH', '2D', '10H', '2C'],
+        already_dropped_cards=['2S', '4D', 'AC', '5C']
+    )
+
+    [0.2558139534883721, 0.636766334440753, 0.10741971207087486]
+    probabilities = count_win_probabilities(
+        players_private_cards=[('2C', 'QC'), ('KH', 'KS'), ('AD', '8D')],
+        known_community_cards=['3C', '6H', 'QS'],
+        already_dropped_cards=[]
+    )
+
+    [0.15982639238453195, 0.5475531471486976, 0.2926204604667699]
+    probabilities = count_win_probabilities(
+        players_private_cards=[('2C', 'QC'), ('KH', 'KS'), ('AD', '8D')],
+        known_community_cards=[],
+        already_dropped_cards=[]
+    )
+    """
     deck: tp.Set[Card] = get_full_deck()
 
     if already_dropped_cards:
@@ -401,20 +445,3 @@ def count_win_probabilities(players_private_cards: list[tuple[str, str]],
 
     return [num_win_outcomes / total_outcomes for num_win_outcomes in players_win_outcomes]
 
-
-# How to use.
-if __name__ == '__main__':
-    # [0.2558139534883721, 0.636766334440753, 0.10741971207087486]
-    probabilities = count_win_probabilities(
-        players_private_cards=[('2C', 'QC'), ('KH', 'KS'), ('AD', '8D')],
-        known_community_cards=['3C', '6H', 'QS'],
-        already_dropped_cards=[]
-    )
-    print(probabilities)
-    # [0.15982639238453195, 0.5475531471486976, 0.2926204604667699]
-    probabilities = count_win_probabilities(
-        players_private_cards=[('2C', 'QC'), ('KH', 'KS'), ('AD', '8D')],
-        known_community_cards=[],
-        already_dropped_cards=[]
-    )
-    print(probabilities)
