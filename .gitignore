@@ -1,3 +1,5 @@
 .idea
-*__pycache__
+*__pycache__*
 holdem_probability.iml
+dist/
+*.egg-info/
