@@ -2,7 +2,7 @@
 
 ![Python >= 3.6](https://img.shields.io/badge/python->=3.6-blue) ![Python >= 3.6](https://img.shields.io/badge/license-MIT-green)
 
-A Python package to count win probability in Texas Hold'em.
+A Python package to count win probability in [Texas Hold'em](https://en.wikipedia.org/wiki/Texas_hold_%27em).
 
 ## Installation
 ```
