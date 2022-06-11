@@ -4,7 +4,7 @@ Testing function for texas hold'em win probabilities counter
 
 import pytest
 
-from src import count_win_probabilities
+from src.holdem_probability import count_win_probabilities
 
 from five_community_cards_tests import FIVE_COMMUNITY_CARDS_TESTS
 from four_community_cards_tests import FOUR_COMMUNITY_CARDS_TESTS

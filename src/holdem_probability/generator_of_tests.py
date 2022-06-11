@@ -1,7 +1,7 @@
 import random
 
-from hold_em import count_win_probabilities
-from hold_em import get_full_deck
+from holdem import count_win_probabilities
+from holdem import get_full_deck
 
 
 NUM_TESTS_5 = 100
