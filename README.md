@@ -28,5 +28,8 @@ probabilities = count_win_probabilities(
 )
 ```
 
+## Other
+Check out the [tests generator](https://github.com/eeeeeeeelias/holdem-win-probability/blob/trunk/src/holdem_probability/generator_of_tests.py).
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
